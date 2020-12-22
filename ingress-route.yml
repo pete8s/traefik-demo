@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-gui
+  namespace: traefik
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`my-cluster.test`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+    - match: Host(`my-cluster.test`) && PathPrefix(`/hello-kubernetes`)
+      kind: Rule
+      services:
+        - name: hello-world
+          kind: Service
+          port: 8080
+  tls: {}
+
+
+
