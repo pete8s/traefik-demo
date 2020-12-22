@@ -7,12 +7,12 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`my-cluster.test`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+    - match: Host(`localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       kind: Rule
       services:
         - name: api@internal
           kind: TraefikService
-    - match: Host(`my-cluster.test`) && PathPrefix(`/hello-kubernetes`)
+    - match: Host(`localhost`) && PathPrefix(`/hello-kubernetes`)
       kind: Rule
       services:
         - name: hello-world

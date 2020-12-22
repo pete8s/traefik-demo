@@ -2,4 +2,4 @@
 CWD=$(dirname "$0")
 
 kind create cluster --config ${CWD}/cluster.yml --name traefik-demo
-kubectl cluster-info --context traefik-demo
+kubectl cluster-info --context kind-traefik-demo
